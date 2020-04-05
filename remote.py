@@ -1,8 +1,13 @@
 import spotipy
-import gpiozero
 from spotipy import util 
+from gpiozero import Button
+from time import sleep
 
+button = Button(2)
 
-
-
-gpiozero
+while True:
+    if button.is_pressed:
+        print("Pressed")
+    else:
+        print("Released")
+    sleep(1)
