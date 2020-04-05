@@ -32,7 +32,7 @@ while True:
     if volumeUp_button.is_pressed:
     	print("▲")
     	print(json.dumps(volumeUp.volumeUp(), indent=2))
-    if volumeDown_button,is_pressed:
+    if volumeDown_button.is_pressed:
     	print("▼")
 		print(json.dumps(volumeDown_button.volumeDown(), indent=2))
 
