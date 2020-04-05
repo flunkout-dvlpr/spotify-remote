@@ -9,12 +9,13 @@ import spotify_next as nextSong
 import spotify_previous as previousSong
 import spotify_volumeUp as volumeUp
 import spotify_volumeDown as volumeDown
-
+import spotify_addToPlaylist as addToPlaylist
 play_button = Button(2)
 previous_button = Button(3)
 next_button = Button(4)
 volumeUp_button = Button(17)
 volumeDown_button = Button(27)
+addToPlaylist_button = Button(22)
 
 while True:
     if play_button.is_pressed:
@@ -37,6 +38,10 @@ while True:
     	print("▼")
     	print(json.dumps(volumeDown.volumeDown(), indent=2))
 
+
+    if addToPlaylist_button.is_pressed:
+    	print("+")
+    	print(json.dumps(addToPlaylist.addToPlaylist(), indent=2))
 
     # else:
     #     print("Released")
