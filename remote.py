@@ -18,11 +18,11 @@ while True:
 
     if previous_button.is_pressed:
         print("<<-")
-        print(json.dumps(spotify_previous.previousSong(), indent=2))
+        print(json.dumps(previousSong.previousSong(), indent=2))
 
     if next_button.is_pressed:
         print("->>")
-        print(json.dumps(spotify_next.nextSong(), indent=2))
+        print(json.dumps(nextSong.nextSong(), indent=2))
     # else:
     #     print("Released")
     # sleep(1)
