@@ -13,4 +13,6 @@ def nextSong():
 	return {'state': "Next Yam Coming Up!"}
 
 
-print(json.dumps(nextSong(), indent=2))
+# print(json.dumps(nextSong(), indent=2))
+
+
