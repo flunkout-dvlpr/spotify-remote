@@ -9,6 +9,7 @@ while True:
     if button.is_pressed:
         print("Pressed")
         playback.playback()
+        sleep(3)
     else:
         print("Released")
     sleep(1)
