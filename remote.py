@@ -11,6 +11,6 @@ while True:
         print("Pressed")
         print(json.dumps(playback.playback(), indent=2))
 
-    else:
-        print("Released")
-    sleep(1)
+    # else:
+    #     print("Released")
+    # sleep(1)
