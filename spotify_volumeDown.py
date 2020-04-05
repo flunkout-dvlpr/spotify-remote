@@ -22,4 +22,4 @@ def volumeDown():
 		spotify.volume(volume_percent=updateVolume)
 		return {'state': "Is Like That :( Volume @ {}%".format(updateVolume)}
 
-print(json.dumps(volumeDown(), indent=2))
+# print(json.dumps(volumeDown(), indent=2))
