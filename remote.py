@@ -1,8 +1,10 @@
 import json
+import lcd
 import Spotify 
 from time import sleep
 from gpiozero import Button
 
+LCD = lcd.connect()
 
 spotifySession = Spotify.connect()
 
@@ -33,18 +35,26 @@ while True:
     if volumeUp_button.is_pressed:
     	print("▲")
     	print(json.dumps(Spotify.volumeUp(spotifySession), indent=2))
-    	sleep(2)
 
     if volumeDown_button.is_pressed:
     	print("▼")
     	print(json.dumps(Spotify.volumeDown(spotifySession), indent=2))
-    	sleep(2)
-
+    
     if addToPlaylist_button.is_pressed:
     	print("+")
     	print(json.dumps(Spotify.addToPlaylist(spotifySession), indent=2))
     	sleep(2)
-    print(json.dumps(Spotify.currentSong(spotifySession), indent=2))
+
+    currentSong = Spotify.currentSong()
+    songName    = currentSong['name']
+    songArtist  = currentSong['artist']
+    lcd.displaySongInfo(LCD, song, artist)
+
+
+
+    	
+    
+
 
 
 
