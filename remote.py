@@ -19,38 +19,38 @@ oldtime = time.time()
 while True:
 
     if play_button.is_pressed:
-    	state = Spotify.playback(spotifySession)
-    	lcd.displayState(LCD, state)
+    	response = Spotify.playback(spotifySession)
+    	lcd.displayState(LCD, response['state'])
         #print("||>")
         #print(json.dumps(Spotify.playback(spotifySession), indent=2))
 
     if previous_button.is_pressed:
-    	state = Spotify.previousSong(spotifySession)
-    	lcd.displayState(LCD, state)
+    	response = Spotify.previousSong(spotifySession)
+    	lcd.displayState(LCD, response['state'])
         #print("<<-")
         #print(json.dumps(Spotify.previousSong(spotifySession), indent=2))
 
     if next_button.is_pressed:
-    	state = Spotify.nextSong(spotifySession)
-    	lcd.displayState(LCD, state)
+    	response = Spotify.nextSong(spotifySession)
+    	lcd.displayState(LCD, response['state'])
         # print("->>")
         # print(json.dumps(Spotify.nextSong(spotifySession), indent=2))
 
     if volumeUp_button.is_pressed:
-    	state = Spotify.volumeUp(spotifySession)
-    	lcd.displayState(LCD, state)
+    	response = Spotify.volumeUp(spotifySession)
+    	lcd.displayState(LCD, response['state'])
     	# print("▲")
     	# print(json.dumps(Spotify.volumeUp(spotifySession), indent=2))
 
     if volumeDown_button.is_pressed:
-    	state = Spotify.volumeDown(spotifySession)
-    	lcd.displayState(LCD, state)
+    	response = Spotify.volumeDown(spotifySession)
+    	lcd.displayState(LCD, response['state'])
     	# print("▼")
     	# print(json.dumps(Spotify.volumeDown(spotifySession), indent=2))
     
     if addToPlaylist_button.is_pressed:
-    	state = Spotify.addToPlaylist(spotifySession)
-    	lcd.displayState(LCD, state)
+    	response = Spotify.addToPlaylist(spotifySession)
+    	lcd.displayState(LCD, response['state'])
     	# print("+")
     	# print(json.dumps(Spotify.addToPlaylist(spotifySession), indent=2))
 
