@@ -20,10 +20,10 @@ def currentSong(spotifySession):
 		songInfo = '{} By {} ft. {}\n#{} {} \n@barz_bot'.format(songName, songArtist, featuredArtist, (songArtist).replace(' ', ''), featuredArtistHashTag)
 	else:
 		songInfo = '{} By {}\n#{} @barz_bot'.format(songName, songArtist, (songArtist).replace(' ', ''))
-	return {'name': songName,
-			'artist': songArtist,
-			'features': songFeatures,
-			'info': songInfo }
+	return {'name'		: songName,
+			'artist'	: songArtist,
+			'features'	: songFeatures,
+			'barzBot'	: songInfo }
 
 def playback(spotifySession):
 	spotify = spotifySession
@@ -33,20 +33,20 @@ def playback(spotifySession):
 
 	if playbackState:
 		spotify.pause_playback()
-		return {'state': "Pausing Yams :("}
+		return {'state': ["Pausing Yams :("]}
 	else:
 		spotify.start_playback()
-		return {'state': "Loading Yams!"}
+		return {'state': ["Loading Yams!"]}
 
 def previousSong(spotifySession):
 	spotify = spotifySession
 	spotify.previous_track()
-	return {'state': "That Yam Go HARD, RUN IT BACK!"}
+	return {'state': ["That Yam Go HARD", "RUN IT BACK!"]}
 
 def nextSong(spotifySession):
 	spotify = spotifySession
 	spotify.next_track()
-	return {'state': "Next Yam Coming Up!"}
+	return {'state': ["Next Yam", "Coming Up!"]}
 
 def volumeUp(spotifySession):
 	spotify = spotifySession
@@ -56,12 +56,12 @@ def volumeUp(spotifySession):
 	if volumePercent <= 95:
 		updateVolume = volumePercent+5
 		spotify.volume(volume_percent=updateVolume)
-		return {'state': "Cranking It Up! Volume @ {}%".format(updateVolume)}
+		return {'state': ["Cranking It Up!", "Volume @ {}%".format(updateVolume)]}
 
 	elif volumePercent > 95:
 		updateVolume = 100
 		spotify.volume(volume_percent=updateVolume)
-		return {'state': "MAXED OUT SHEESH! Volume @ {}".format(updateVolume)}
+		return {'state': ["MAXED OUT SHESH!", "Volume @ {}".format(updateVolume)]}
 
 def volumeDown(spotifySession):
 	spotify = spotifySession
@@ -71,12 +71,12 @@ def volumeDown(spotifySession):
 	if volumePercent >= 5:
 		updateVolume = volumePercent-5
 		spotify.volume(volume_percent=updateVolume)
-		return {'state': "Turning It Down :( Volume @ {}%".format(updateVolume)}
+		return {'state': ["Down It Goes :(", "Volume @ {}%".format(updateVolume)]}
 
 	elif volumePercent < 5:
 		updateVolume = 0
 		spotify.volume(volume_percent=updateVolume)
-		return {'state': "Is Like That :( Volume @ {}%".format(updateVolume)}
+		return {'state': ["Is Like That :(", "Volume @ {}%".format(updateVolume)]}
 
 def addToPlaylist(spotifySession):
 	spotify = spotifySession
@@ -91,7 +91,7 @@ def addToPlaylist(spotifySession):
 
 	if currentSongURI not in playlistSongsURIs:
 		spotify.user_playlist_add_tracks('julio_jobs', '5H89uOgCVGdDrCBg211Sio', [currentSongURI] )
-		return {'state': " '{}', Is Definitely A Keeper! Adding To Playlist".format(currentSongName)}
+		return {'state': ["A Keeper! Adding", "To Playlist"]}
 	else:
-		return {'state': " '{}', Already On The Playlist Playa!".format(currentSongName)}
+		return {'state': ["Already On The", "Playlist playa!"]}
 
