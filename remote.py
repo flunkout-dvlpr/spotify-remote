@@ -45,7 +45,7 @@ while True:
     	print(json.dumps(Spotify.addToPlaylist(spotifySession), indent=2))
     	sleep(2)
 
-    currentSong = Spotify.currentSong()
+    currentSong = Spotify.currentSong(spotifySession)
     songName    = currentSong['name']
     songArtist  = currentSong['artist']
     lcd.displaySongInfo(LCD, song, artist)
