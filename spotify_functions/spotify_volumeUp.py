@@ -21,7 +21,3 @@ def volumeUp():
 		updateVolume = 100
 		spotify.volume(volume_percent=updateVolume)
 		return {'state': "MAXED OUT SHEESH! Volume @ {}".format(updateVolume)}
-
-
-
-# print(json.dumps(volumeUp(), indent=2))

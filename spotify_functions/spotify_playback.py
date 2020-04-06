@@ -21,6 +21,3 @@ def playback():
 	else:
 		spotify.start_playback()
 		return {'state': "Loading Yams!"}
-
-
-# print(json.dumps(playback(), indent=2))

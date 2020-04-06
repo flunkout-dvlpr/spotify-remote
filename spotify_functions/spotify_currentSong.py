@@ -24,5 +24,3 @@ def currentSong():
 			'artist': songArtist,
 			'features': songFeatures,
 			'info': songInfo }
-
-print(json.dumps(currentSong(), indent=2))

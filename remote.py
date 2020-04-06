@@ -1,15 +1,11 @@
 import json
-import spotipy
+import Spotify 
 from time import sleep
-from spotipy import util 
 from gpiozero import Button
 
-import spotify_playback as playback
-import spotify_next as nextSong
-import spotify_previous as previousSong
-import spotify_volumeUp as volumeUp
-import spotify_volumeDown as volumeDown
-import spotify_addToPlaylist as addToPlaylist
+
+spotifySession = Spotify.connect()
+
 play_button = Button(2)
 previous_button = Button(3)
 next_button = Button(4)
@@ -17,32 +13,32 @@ volumeUp_button = Button(17)
 volumeDown_button = Button(27)
 addToPlaylist_button = Button(22)
 
+
 while True:
     if play_button.is_pressed:
         print("> ||")
-        print(json.dumps(playback.playback(), indent=2))
+        print(json.dumps(Spotify.playback(spotifySession), indent=2))
 
     if previous_button.is_pressed:
         print("<<-")
-        print(json.dumps(previousSong.previousSong(), indent=2))
+        print(json.dumps(Spotify.previousSong(spotifySession), indent=2))
 
     if next_button.is_pressed:
         print("->>")
-        print(json.dumps(nextSong.nextSong(), indent=2))
+        print(json.dumps(Spotify.nextSong(spotifySession), indent=2))
 
     if volumeUp_button.is_pressed:
     	print("▲")
-    	print(json.dumps(volumeUp.volumeUp(), indent=2))
+    	print(json.dumps(Spotify.volumeUp(spotifySession), indent=2))
 
     if volumeDown_button.is_pressed:
     	print("▼")
-    	print(json.dumps(volumeDown.volumeDown(), indent=2))
-
+    	print(json.dumps(Spotify.volumeDown(spotifySession), indent=2))
 
     if addToPlaylist_button.is_pressed:
     	print("+")
-    	print(json.dumps(addToPlaylist.addToPlaylist(), indent=2))
+    	print(json.dumps(Spotify.addToPlaylist(spotifySession), indent=2))
 
-    # else:
-    #     print("Released")
-    # sleep(1)
+
+
+

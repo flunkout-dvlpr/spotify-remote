@@ -7,12 +7,7 @@ def connect():
 	spotify = spotipy.Spotify(auth=token)
 	return spotify
 
-def nextSong():
+def previousSong():
 	spotify = connect()
-	spotify.next_track()
-	return {'state': "Next Yam Coming Up!"}
-
-
-# print(json.dumps(nextSong(), indent=2))
-
-
+	spotify.previous_track()
+	return {'state': "That Yam Go HARD, RUN IT BACK!"}

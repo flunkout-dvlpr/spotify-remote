@@ -23,5 +23,3 @@ def addToPlaylist():
 		return {'state': " '{}', Is Definitely A Keeper! Adding To Playlist".format(currentSongName)}
 	else:
 		return {'state': " '{}', Already On The Playlist Playa!".format(currentSongName)}
-
-# print(json.dumps(addToPlaylist(), indent=2))
