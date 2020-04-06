@@ -42,26 +42,12 @@ while True:
     	print("+")
     	print(json.dumps(Spotify.addToPlaylist(spotifySession), indent=2))
 
- 	if (time.time() - oldtime) > 59:
-		print "it's been a minute"
-		oldtime = time.time()	
+ 	if (time.time() - oldtime) > 59:    	
+    	print "it's been a minute"    	
+    	oldtime = time.time()
     #    if tenSeconds:	
 	#     currentSong = Spotify.currentSong(spotifySession)
 	#     songName    = currentSong['name']
 	#     songArtist  = currentSong['artist']
 	#     lcd.displaySongInfo(LCD, songName, songArtist)
 	# else:
-
-
-
-
-
-    	
-    
-
-
-
-
-
-
-
