@@ -35,7 +35,7 @@ def displaySongInfo(lcd, song, artist):
 	lcd.set_cursor_position(1, 2)
 	lcd.write(artist[:16])
 	
-def displayState(lcd, state)
+def displayState(lcd, state):
 	lcd.clear()
 	lcd.set_cursor_position(1, 1)
 	lcd.write(state[0])
