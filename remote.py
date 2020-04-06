@@ -1,7 +1,7 @@
 import json
 import lcd
 import Spotify 
-from time import sleep
+import time
 from gpiozero import Button
 
 LCD = lcd.connect()
@@ -15,22 +15,20 @@ volumeUp_button = Button(17)
 volumeDown_button = Button(27)
 addToPlaylist_button = Button(22)
 
-
+tenSeconds = False
 while True:
+
     if play_button.is_pressed:
         print("||>")
         print(json.dumps(Spotify.playback(spotifySession), indent=2))
-        sleep(2)
 
     if previous_button.is_pressed:
         print("<<-")
         print(json.dumps(Spotify.previousSong(spotifySession), indent=2))
-        sleep(2)
 
     if next_button.is_pressed:
         print("->>")
         print(json.dumps(Spotify.nextSong(spotifySession), indent=2))
-        sleep(2)
 
     if volumeUp_button.is_pressed:
     	print("▲")
@@ -43,12 +41,17 @@ while True:
     if addToPlaylist_button.is_pressed:
     	print("+")
     	print(json.dumps(Spotify.addToPlaylist(spotifySession), indent=2))
-    	sleep(2)
 
-    currentSong = Spotify.currentSong(spotifySession)
-    songName    = currentSong['name']
-    songArtist  = currentSong['artist']
-    lcd.displaySongInfo(LCD, songName, songArtist)
+	if time.time() - oldtime > 59:
+	    print "it's been a minute"
+    #    if tenSeconds:	
+	#     currentSong = Spotify.currentSong(spotifySession)
+	#     songName    = currentSong['name']
+	#     songArtist  = currentSong['artist']
+	#     lcd.displaySongInfo(LCD, songName, songArtist)
+	# else:
+
+
 
 
 
