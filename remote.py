@@ -15,7 +15,7 @@ volumeUp_button = Button(17)
 volumeDown_button = Button(27)
 addToPlaylist_button = Button(22)
 
-tenSeconds = False
+oldtime = time.time()
 while True:
 
     if play_button.is_pressed:
@@ -42,8 +42,9 @@ while True:
     	print("+")
     	print(json.dumps(Spotify.addToPlaylist(spotifySession), indent=2))
 
-	if time.time() - oldtime > 59:
+ 	if (time.time() - oldtime) > 59:
 		print "it's been a minute"
+		oldtime = time.time()	
     #    if tenSeconds:	
 	#     currentSong = Spotify.currentSong(spotifySession)
 	#     songName    = currentSong['name']
