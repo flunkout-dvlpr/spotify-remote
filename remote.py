@@ -16,28 +16,37 @@ addToPlaylist_button = Button(22)
 
 while True:
     if play_button.is_pressed:
-        print("> ||")
+        print("||>")
         print(json.dumps(Spotify.playback(spotifySession), indent=2))
+        time.sleep(2)
 
     if previous_button.is_pressed:
         print("<<-")
         print(json.dumps(Spotify.previousSong(spotifySession), indent=2))
+        time.sleep(2)
 
     if next_button.is_pressed:
         print("->>")
         print(json.dumps(Spotify.nextSong(spotifySession), indent=2))
+        time.sleep(2)
 
     if volumeUp_button.is_pressed:
     	print("▲")
     	print(json.dumps(Spotify.volumeUp(spotifySession), indent=2))
+    	time.sleep(2)
 
     if volumeDown_button.is_pressed:
     	print("▼")
     	print(json.dumps(Spotify.volumeDown(spotifySession), indent=2))
+    	time.sleep(2)
 
     if addToPlaylist_button.is_pressed:
     	print("+")
     	print(json.dumps(Spotify.addToPlaylist(spotifySession), indent=2))
+    	time.sleep(2)
+    print(json.dumps(Spotify.currentSong(spotifySession), indent=2))
+
+
 
 
 
