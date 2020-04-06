@@ -41,13 +41,11 @@ while True:
     if addToPlaylist_button.is_pressed:
     	print("+")
     	print(json.dumps(Spotify.addToPlaylist(spotifySession), indent=2))
-    	
+
     if (time.time() - oldtime) > 14:
-    	print("15 Seconds have passed")
+    	print("15 Seconds have passed")   	
+		currentSong = Spotify.currentSong(spotifySession)
+		songName    = currentSong['name']
+		songArtist  = currentSong['artist']
+		lcd.displaySongInfo(LCD, songName, songArtist)
     	oldtime = time.time()
-#    if tenSeconds:	
-#     currentSong = Spotify.currentSong(spotifySession)
-#     songName    = currentSong['name']
-#     songArtist  = currentSong['artist']
-#     lcd.displaySongInfo(LCD, songName, songArtist)
-# else:
