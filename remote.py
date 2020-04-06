@@ -48,7 +48,7 @@ while True:
     currentSong = Spotify.currentSong(spotifySession)
     songName    = currentSong['name']
     songArtist  = currentSong['artist']
-    lcd.displaySongInfo(LCD, song, artist)
+    lcd.displaySongInfo(LCD, songName, songArtist)
 
 
 
