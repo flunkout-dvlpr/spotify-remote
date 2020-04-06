@@ -30,14 +30,14 @@ def displaySongInfo(lcd, song, artist):
 	print('----' + artist + '----')
 	print(len(song),len(artist))
 
-	t_end = time.time() + 10
-	while time.time() < t_end:
-		lcd.set_cursor_position(1, 1)
-		lcd.write(song[:16])
-		lcd.set_cursor_position(1, 2)
-		lcd.write(artist[:16])
-		
-		
-		song = song[1:] + song[0]
-		artist = artist[1:] + artist[0]
-		time.sleep(0.4)
+	# t_end = time.time() + 10
+	# while time.time() < t_end:
+	lcd.set_cursor_position(1, 1)
+	lcd.write(song[:16])
+	lcd.set_cursor_position(1, 2)
+	lcd.write(artist[:16])
+	
+	
+	# song = song[1:] + song[0]
+	# artist = artist[1:] + artist[0]
+	# time.sleep(0.4)
