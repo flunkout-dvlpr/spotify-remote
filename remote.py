@@ -57,7 +57,8 @@ while True:
     if (time.time() - oldtime) > 9:
     	print("10 Seconds have passed")
     	currentSong = Spotify.currentSong(spotifySession)
-    	songName	= currentSong['name']
-    	songArtist	= currentSong['artist']
-    	lcd.displaySongInfo(LCD, songName, songArtist)
+    	if currentSong:
+	    	songName	= currentSong['name']
+	    	songArtist	= currentSong['artist']
+	    	lcd.displaySongInfo(LCD, songName, songArtist)
     	oldtime = time.time()
