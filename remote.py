@@ -60,5 +60,5 @@ while True:
     	if currentSong:
 	    	songName	= currentSong['name']
 	    	songArtist	= currentSong['artist']
-	    	lcd.displaySongInfo(LCD, songName, songArtist)
+	    	lcd.displayState(LCD, [songName, songArtist])
     	oldtime = time.time()
