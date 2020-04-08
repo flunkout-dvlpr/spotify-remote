@@ -69,9 +69,9 @@ while True:
 	    	lyrics 		= Genius.search(geniusSession, songName, songArtist)
 	    	if lyrics:
 	    		displayLines = lyrics['displayLines']
-	    		for lineNumber in range(0, len(displayLines)):
+	    		for lineNumber in range(0, len(displayLines)-1):
 	    			lcd.displayState(LCD, [displayLines[lineNumber], displayLines[lineNumber+1]])
-	    			time.sleep(1.5)
+	    			#time.sleep(1.5)
 
 
 
