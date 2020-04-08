@@ -10,14 +10,23 @@ def connect():
 def volumeUp():
 	spotify = connect()
 	getState = spotify.current_playback()
-	volumePercent = getState['device']['volume_percent']
+	deviceType = getState['device']['type']
 
-	if volumePercent <= 95:
-		updateVolume = volumePercent+5
-		spotify.volume(volume_percent=updateVolume)
-		return {'state': "Cranking It Up! Volume @ {}%".format(updateVolume)}
+	if deviceType == 'Computer':
+		volumePercent = getState['device']['volume_percent']
 
-	elif volumePercent > 95:
-		updateVolume = 100
-		spotify.volume(volume_percent=updateVolume)
-		return {'state': "MAXED OUT SHEESH! Volume @ {}".format(updateVolume)}
+		if volumePercent <= 95:
+			updateVolume = volumePercent+5
+			spotify.volume(volume_percent=updateVolume)
+			return {'state': "Cranking It Up! Volume @ {}%".format(updateVolume)}
+
+		elif volumePercent > 95:
+			updateVolume = 100
+			spotify.volume(volume_percent=updateVolume)
+			return {'state': "MAXED OUT SHEESH! Volume @ {}".format(updateVolume)}
+	elif deviceType == 'Smartphone':
+		return {'state': "Sorry can't control this device" }
+
+
+
+print(volumeUp())
