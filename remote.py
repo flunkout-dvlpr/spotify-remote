@@ -69,9 +69,11 @@ while True:
 	    	lyrics 		= Genius.search(geniusSession, songName, songArtist)
 	    	if lyrics:
 	    		displayLines = lyrics['displayLines']
+	    		lineNumber = 0
 	    		while lineNumber < len(displayLines)-1 and showLyrics_button.is_pressed:
 	    		#for lineNumber in range(0, len(displayLines)-1):
 	    			lcd.displayState(LCD, [displayLines[lineNumber], displayLines[lineNumber+1]])
+	    			lineNumber += 1
 	    			time.sleep(1.5)
 
 
