@@ -8,7 +8,7 @@ def connect():
 	return genius
 
 def search(geniusSession, songName, songArtist):
-	genius  = geniusSession
+	genius = connect()
 	request = genius.search_song(songName, songArtist, get_full_info=False)
 	if request:
 		rawLyrics 		= request.lyrics.split('\n')
@@ -52,5 +52,5 @@ def search(geniusSession, songName, songArtist):
 # 	print(displayLines[currentLine+1])
 # 	print('*'*18)
 # 	currentLine += 1
-	time.sleep(1)
+#	time.sleep(1)
 
