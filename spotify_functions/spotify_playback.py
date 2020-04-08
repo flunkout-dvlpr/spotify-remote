@@ -11,13 +11,21 @@ def connect():
 
 def playback():
 	spotify = connect()
-
 	getState = spotify.current_playback()
-	playbackState = getState['is_playing']
 
-	if playbackState:
-		spotify.pause_playback()
-		return {'state': "Pausing Yams :("}
+	if getState:
+		playbackState = getState['is_playing']
+
+		if playbackState:
+			spotify.pause_playback()
+			return {'state': "Pausing Yams :("}
+		else:
+			spotify.start_playback()
+			return {'state': "Loading Yams!"}
 	else:
-		spotify.start_playback()
-		return {'state': "Loading Yams!"}
+		devices = spotify.devices()
+		if devices['devices']:			
+			deviceID = devices['devices'][0]['id']
+			spotify.start_playback(device_id=deviceID)
+		else:
+			return {'state': "Turn On Spotify!"}
