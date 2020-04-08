@@ -10,17 +10,22 @@ def connect():
 def currentSong():
 	spotify = connect()
 	song  = spotify.current_user_playing_track()
-	songName	  = song['item']['name'].split('(')[0].strip()
-	songArtist	  = [artist['name'] for artist in song['item']['artists']][0]
-	songFeatures = [artist['name'] for artist in song['item']['artists']][1:]
+	if song:
+		songName	 = song['item']['name'].split('(')[0].strip()
+		songArtist	 = [artist['name'] for artist in song['item']['artists']][0]
+		songFeatures = [artist['name'] for artist in song['item']['artists']][1:]
 
-	if songFeatures != []:
-		featuredArtist = (', ').join(songFeatures)
-		featuredArtistHashTag = ('').join(['#'+artist.replace(' ', '') for artist in songFeatures])
-		songInfo = '{} By {} ft. {}\n#{} {} \n@barz_bot'.format(songName, songArtist, featuredArtist, (songArtist).replace(' ', ''), featuredArtistHashTag)
+		if songFeatures != []:
+			featuredArtist = (', ').join(songFeatures)
+			featuredArtistHashTag = ('').join(['#'+artist.replace(' ', '') for artist in songFeatures])
+			songInfo = '{} By {} ft. {}\n#{} {} \n@barz_bot'.format(songName, songArtist, featuredArtist, (songArtist).replace(' ', ''), featuredArtistHashTag)
+		else:
+			songInfo = '{} By {}\n#{} @barz_bot'.format(songName, songArtist, (songArtist).replace(' ', ''))
+
+		return {'info'		: songInfo, 
+				'name'		: songName,
+				'artist'	: songArtist,
+				'features'	: songFeatures
+				}
 	else:
-		songInfo = '{} By {}\n#{} @barz_bot'.format(songName, songArtist, (songArtist).replace(' ', ''))
-	return {'name': songName,
-			'artist': songArtist,
-			'features': songFeatures,
-			'info': songInfo }
+		return None 
