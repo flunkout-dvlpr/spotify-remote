@@ -30,7 +30,7 @@ def currentSong(spotifySession):
 			   }
 	else:
 		return None
-		
+
 def playback(spotifySession):
 	spotify = spotifySession
 
@@ -41,17 +41,19 @@ def playback(spotifySession):
 
 		if playbackState:
 			spotify.pause_playback()
-			return {'state': "Pausing Yams :("}
+			return {'state': ["Pausing Yams :("]}
 		else:
 			spotify.start_playback()
-			return {'state': "Loading Yams!"}
+			return {'state': ["Loading Yams!"]}
 	else:
 		devices = spotify.devices()
 		if devices['devices']:			
 			deviceID = devices['devices'][0]['id']
+			deviceName = devices['devices'][0]['name']
 			spotify.start_playback(device_id=deviceID)
+			return {'state': ["Starting", deviceName]}
 		else:
-			return {'state': "Turn On Spotify!"}
+			return {'state': ["Turn On Spotify!"]}
 
 
 
