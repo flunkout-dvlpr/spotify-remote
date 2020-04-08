@@ -51,7 +51,7 @@ def playback(spotifySession):
 			deviceID = devices['devices'][0]['id']
 			deviceName = devices['devices'][0]['name']
 			spotify.start_playback(device_id=deviceID)
-			return {'state': ["Starting", deviceName]}
+			return {'state': ["Starting Up!"]}
 		else:
 			return {'state': ["Turn On Spotify!"]}
 
