@@ -52,31 +52,41 @@ def volumeUp(spotifySession):
 	spotify = spotifySession
 	getState = spotify.current_playback()
 	volumePercent = getState['device']['volume_percent']
+	deviceType = getState['device']['type']
 
-	if volumePercent <= 95:
-		updateVolume = volumePercent+5
-		spotify.volume(volume_percent=updateVolume)
-		return {'state': ["Cranking It Up!", "Volume @ {}%".format(updateVolume)]}
+	if deviceType == 'Computer':
+		if volumePercent <= 95:
+			updateVolume = volumePercent+5
+			spotify.volume(volume_percent=updateVolume)
+			return {'state': ["Cranking It Up!", "Volume @ {}%".format(updateVolume)]}
 
-	elif volumePercent > 95:
-		updateVolume = 100
-		spotify.volume(volume_percent=updateVolume)
-		return {'state': ["MAXED OUT SHESH!", "Volume @ {}".format(updateVolume)]}
+		elif volumePercent > 95:
+			updateVolume = 100
+			spotify.volume(volume_percent=updateVolume)
+			return {'state': ["MAXED OUT SHESH!", "Volume @ {}".format(updateVolume)]}
+
+	elif deviceType == 'Smartphone':
+		return {'state': ["Can't control", "this device :("] }
 
 def volumeDown(spotifySession):
 	spotify = spotifySession
 	getState = spotify.current_playback()
 	volumePercent = getState['device']['volume_percent']
-	
-	if volumePercent >= 5:
-		updateVolume = volumePercent-5
-		spotify.volume(volume_percent=updateVolume)
-		return {'state': ["Down It Goes :(", "Volume @ {}%".format(updateVolume)]}
+	deviceType = getState['device']['type']
 
-	elif volumePercent < 5:
-		updateVolume = 0
-		spotify.volume(volume_percent=updateVolume)
-		return {'state': ["Is Like That :(", "Volume @ {}%".format(updateVolume)]}
+	if deviceType == 'Computer':	
+		if volumePercent >= 5:
+			updateVolume = volumePercent-5
+			spotify.volume(volume_percent=updateVolume)
+			return {'state': ["Down It Goes :(", "Volume @ {}%".format(updateVolume)]}
+
+		elif volumePercent < 5:
+			updateVolume = 0
+			spotify.volume(volume_percent=updateVolume)
+			return {'state': ["Is Like That :(", "Volume @ {}%".format(updateVolume)]}
+
+	elif deviceType == 'Smartphone':
+		return {'state': ["Can't control", "this device :("] }
 
 def addToPlaylist(spotifySession):
 	spotify = spotifySession
