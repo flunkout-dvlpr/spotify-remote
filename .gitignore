@@ -1,2 +1,4 @@
 /remote_env
 .cache-julio_jobs
+.DS_Store
+*.pyc
