@@ -2,6 +2,7 @@ import json
 import lcd
 import time
 import Spotify
+import Genius
 from gpiozero import Button
 
 LCD = lcd.connect()
@@ -10,13 +11,16 @@ time.sleep(60)
 
 
 spotifySession = Spotify.connect()
+geniusSession  = Genius.connect()
 
-play_button = Button(2)
-previous_button = Button(3)
-next_button = Button(4)
-volumeUp_button = Button(17)
-volumeDown_button = Button(27)
-addToPlaylist_button = Button(22)
+play_button 			= Button(2)
+previous_button 		= Button(3)
+next_button 			= Button(4)
+volumeUp_button 		= Button(17)
+volumeDown_button 		= Button(27)
+addToPlaylist_button 	= Button(22)
+showLyrics_button		= Button(18)
+
 
 oldtime = time.time()
 while True:
@@ -56,6 +60,20 @@ while True:
     	lcd.displayState(LCD, response['state'])
     	# print("+")
     	# print(json.dumps(Spotify.addToPlaylist(spotifySession), indent=2))
+
+    while showLyrics_button.is_pressed:   	
+    	currentSong = Spotify.currentSong(spotifySession)
+    	if currentSong:
+	    	songName	= currentSong['name']
+	    	songArtist	= currentSong['artist']
+	    	lyrics 		= Genius.search(geniusSession, songName, songArtist)
+	    	if lyrics:
+	    		displayLines = lyrics['displayLines']
+	    		for lineNumber in len(displayLines)-1:
+	    			lcd.displayState(LCD, [displayLines[lineNumber], displayLines[lineNumber+1]])
+	    			time.sleep(1.5)
+
+
 
     if (time.time() - oldtime) > 9:
     	print("10 Seconds have passed")

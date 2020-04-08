@@ -4,16 +4,16 @@ import spotipy
 from spotipy import util 
 
 def connect():
-	# token = util.prompt_for_user_token('julio_jobs', "user-read-currently-playing user-read-playback-state user-modify-playback-state playlist-modify-public" )
-	# spotify = spotipy.Spotify(auth=token)	
+    # token = util.prompt_for_user_token('julio_jobs', "user-read-currently-playing user-read-playback-state user-modify-playback-state playlist-modify-public" )
+    # spotify = spotipy.Spotify(auth=token)	
     SPOTIPY_CLIENT_ID       = os.environ.get('SPOTIPY_CLIENT_ID')
     SPOTIPY_CLIENT_SECRET   = os.environ.get('SPOTIPY_CLIENT_SECRET')
     SPOTIPY_REDIRECT_URI    = os.environ.get('SPOTIPY_REDIRECT_URI')
     spotify = spotipy.Spotify(auth_manager=spotipy.SpotifyOAuth(SPOTIPY_CLIENT_ID,
-																SPOTIPY_CLIENT_SECRET,
-																SPOTIPY_REDIRECT_URI,
-																scope="user-read-currently-playing user-read-playback-state user-modify-playback-state playlist-modify-public",
-																username='julio_jobs'))
+    															SPOTIPY_CLIENT_SECRET,
+    															SPOTIPY_REDIRECT_URI,
+    															scope="user-read-currently-playing user-read-playback-state user-modify-playback-state playlist-modify-public",
+    															username='julio_jobs'))
     return spotify
 
 def currentSong(spotifySession):
@@ -24,6 +24,9 @@ def currentSong(spotifySession):
         songName      = song['item']['name'].split('(')[0].strip()
         songArtist    = [artist['name'] for artist in song['item']['artists']][0]
         songFeatures  = [artist['name'] for artist in song['item']['artists']][1:]
+        songProgress  = (song['progress_ms']/1000)
+        songDuration  = (song['item']['duration_ms']/1000)
+        songPercent   = songProgress/songDuration
 
         if songFeatures != []:
             featuredArtist = (', ').join(songFeatures)
@@ -32,10 +35,11 @@ def currentSong(spotifySession):
         else:
             songInfo = '{} By {}\n#{} @barz_bot'.format(songName, songArtist, (songArtist).replace(' ', ''))
 
-        return {'name'      : songName,
-                'artist'    : songArtist,
-                'features'  : songFeatures,
-                'barzBot'   : songInfo 
+        return {'name'          : songName,
+                'artist'        : songArtist,
+                'features'      : songFeatures,
+                'songPercent'   : songPercent,
+                'barzBot'       : songInfo 
                }
     else:
         return None
