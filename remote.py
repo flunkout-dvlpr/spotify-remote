@@ -1,7 +1,7 @@
 import json
 import lcd
 import time
-import Spotify 
+import Spotify
 from gpiozero import Button
 
 LCD = lcd.connect()
