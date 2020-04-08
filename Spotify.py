@@ -6,11 +6,10 @@ from spotipy import util
 def connect():
 	# token = util.prompt_for_user_token('julio_jobs', "user-read-currently-playing user-read-playback-state user-modify-playback-state playlist-modify-public" )
 	# spotify = spotipy.Spotify(auth=token)	
-	
     SPOTIPY_CLIENT_ID       = os.environ.get('SPOTIPY_CLIENT_ID')
     SPOTIPY_CLIENT_SECRET   = os.environ.get('SPOTIPY_CLIENT_SECRET')
     SPOTIPY_REDIRECT_URI    = os.environ.get('SPOTIPY_REDIRECT_URI')
-	spotify = spotipy.Spotify(auth_manager=spotipy.SpotifyOAuth(SPOTIPY_CLIENT_ID,
+    spotify = spotipy.Spotify(auth_manager=spotipy.SpotifyOAuth(SPOTIPY_CLIENT_ID,
 																SPOTIPY_CLIENT_SECRET,
 																SPOTIPY_REDIRECT_URI,
 																scope="user-read-currently-playing user-read-playback-state user-modify-playback-state playlist-modify-public",
