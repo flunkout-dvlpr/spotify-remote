@@ -14,8 +14,7 @@ def connect():
 																SPOTIPY_REDIRECT_URI,
 																scope="user-read-currently-playing user-read-playback-state user-modify-playback-state playlist-modify-public",
 																username='julio_jobs'))
-
-	return spotify
+    return spotify
 
 def currentSong(spotifySession):
     spotify = spotifySession
