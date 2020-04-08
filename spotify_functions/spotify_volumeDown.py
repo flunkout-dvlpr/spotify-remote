@@ -10,14 +10,20 @@ def connect():
 def volumeDown():
 	spotify = connect()
 	getState = spotify.current_playback()
-	volumePercent = getState['device']['volume_percent']
-	
-	if volumePercent >= 5:
-		updateVolume = volumePercent-5
-		spotify.volume(volume_percent=updateVolume)
-		return {'state': "Turning It Down :( Volume @ {}%".format(updateVolume)}
+	deviceType = getState['device']['type']
 
-	elif volumePercent < 5:
-		updateVolume = 0
-		spotify.volume(volume_percent=updateVolume)
-		return {'state': "Is Like That :( Volume @ {}%".format(updateVolume)}
+	if deviceType == 'Computer':
+		volumePercent = getState['device']['volume_percent']
+		
+		if volumePercent >= 5:
+			updateVolume = volumePercent-5
+			spotify.volume(volume_percent=updateVolume)
+			return {'state': "Turning It Down :( Volume @ {}%".format(updateVolume)}
+
+		elif volumePercent < 5:
+			updateVolume = 0
+			spotify.volume(volume_percent=updateVolume)
+			return {'state': "Is Like That :( Volume @ {}%".format(updateVolume)}
+
+	elif deviceType == 'Smartphone':
+		return {'state': "Sorry can't control this device" }

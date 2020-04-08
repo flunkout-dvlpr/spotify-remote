@@ -24,9 +24,6 @@ def volumeUp():
 			updateVolume = 100
 			spotify.volume(volume_percent=updateVolume)
 			return {'state': "MAXED OUT SHEESH! Volume @ {}".format(updateVolume)}
+			
 	elif deviceType == 'Smartphone':
 		return {'state': "Sorry can't control this device" }
-
-
-
-print(volumeUp())
