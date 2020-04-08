@@ -5,6 +5,9 @@ import Spotify
 from gpiozero import Button
 
 LCD = lcd.connect()
+lcd.displayState(LCD, ["Please Wait", "Booting Up!"])
+time.sleep(60)
+
 
 spotifySession = Spotify.connect()
 
