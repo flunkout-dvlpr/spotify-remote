@@ -17,40 +17,9 @@ def search(geniusSession, songName, songArtist):
 		displayLines 	= [oneliner[x:x+16].strip() for x in range(0,len(oneliner),16)]
 		lineCount 		= len(displayLines)
 		return {'lines'			: lines,
-				'displayLines'	: displayLines,
-				'lineCount'		: lineCount			
+						'displayLines'	: displayLines,
+						'lineCount'		: lineCount			
 				}
 	else:
-		return False 
-
-
-# import time
-# import Spotify
-# sp = Spotify.connect()
-# currentSong = Spotify.currentSong(sp)
-
-# songName	= currentSong['name']
-# songArtist	= currentSong['artist']
-# songPercent = currentSong['songPercent']
-
-# lyrics = search(songName, songArtist)
-
-# displayLines = lyrics['displayLines']
-# lineCount	 = lyrics['lineCount']
-
-# # for dLine in displayLines:
-# # 	print(dLine)
-# print(songPercent)
-# print(lineCount)
-# print((songPercent*lineCount))
-
-# currentLine = int(songPercent*lineCount)
-# print(currentLine)
-
-# while currentLine < len(displayLines)-1:
-# 	print(displayLines[currentLine])
-# 	print(displayLines[currentLine+1])
-# 	print('*'*18)
-# 	currentLine += 1
-#	time.sleep(1)
+		return False
 
