@@ -64,15 +64,16 @@ while True:
     while showLyrics_button.is_pressed:   	
     	currentSong = Spotify.currentSong(spotifySession)
     	if currentSong:
-	    	songName	= currentSong['name']
+	    	songName    = currentSong['name']
 	    	songArtist	= currentSong['artist']
-	    	lyrics 		= Genius.search(geniusSession, songName, songArtist)
+        songPercent = currentSong['songPercent']
+	    	lyrics      = Genius.search(geniusSession, songName, songArtist)
 	    	if lyrics:
 	    		displayLines = lyrics['displayLines']
-	    		lineNumber = 0
-	    		while lineNumber < len(displayLines)-1 and showLyrics_button.is_pressed:
-	    		#for lineNumber in range(0, len(displayLines)-1):
-	    			lcd.displayState(LCD, [displayLines[lineNumber], displayLines[lineNumber+1]])
+          lineCount    = lyrics['lineCount']
+          currentLine  = int(songPercent*lineCount)
+	    		while currentLine < len(displayLines)-1 and showLyrics_button.is_pressed:
+	    			lcd.displayState(LCD, [displayLines[currentLine], displayLines[currentLine+1]])
 	    			lineNumber += 1
 	    			time.sleep(1.5)
 
