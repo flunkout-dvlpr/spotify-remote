@@ -2,3 +2,4 @@
 .cache-julio_jobs
 .DS_Store
 *.pyc
+/__pycache__
