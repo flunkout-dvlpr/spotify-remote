@@ -7,7 +7,7 @@ from gpiozero import Button
 
 LCD = lcd.connect()
 lcd.displayState(LCD, ["Please Wait", "Booting Up!"])
-time.sleep(60)
+# time.sleep(60)
 
 
 spotifySession = Spotify.connect()
@@ -64,18 +64,32 @@ while True:
     while showLyrics_button.is_pressed:   	
     	currentSong = Spotify.currentSong(spotifySession)
     	if currentSong:
-	    	songName    = currentSong['name']
-	    	songArtist	= currentSong['artist']
-        songPercent = currentSong['songPercent']
-	    	lyrics      = Genius.search(geniusSession, songName, songArtist)
-	    	if lyrics:
-	    		displayLines = lyrics['displayLines']
-          lineCount    = lyrics['lineCount']
-          currentLine  = int(songPercent*lineCount)
-	    		while currentLine < len(displayLines)-1 and showLyrics_button.is_pressed:
-	    			lcd.displayState(LCD, [displayLines[currentLine], displayLines[currentLine+1]])
-	    			lineNumber += 1
-	    			time.sleep(1.5)
+            songName    = currentSong['name']
+            songArtist	= currentSong['artist']
+            songPercent = currentSong['songPercent']
+            lyrics      = Genius.search(geniusSession, songName, songArtist)
+            if lyrics:
+                displayLines = lyrics['displayLines']
+                lineCount    = lyrics['lineCount']
+                currentLine  = int(songPercent*lineCount)
+                speed        = 1.20
+                while currentLine >= 0 and currentLine < len(displayLines)-1 and showLyrics_button.is_pressed:
+                    lcd.displayState(LCD, [displayLines[currentLine], displayLines[currentLine+1]])
+                    
+                    if previous_button.is_pressed and currentLine >= 1:
+                        currentLine -= 1
+                        time.sleep(.05)
+                    elif next_button.is_pressed and currentLine < len(displayLines)-1:
+                        currentLine += 1
+                        time.sleep(.05)
+                    else:                  
+                        if volumeDown_button.is_pressed and speed >= 0.5:
+                            speed -= .10
+                        if volumeUp_button.is_pressed and speed < 1.75:
+                            speed += .10
+                        currentLine += 1
+                        print(currentLine, speed)
+                        time.sleep(speed)
 
 
 
