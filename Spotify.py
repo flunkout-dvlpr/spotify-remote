@@ -101,7 +101,7 @@ def volumeUp(spotifySession):
         volumePercent = spotifyState['device']['volume_percent']
         deviceType = spotifyState['device']['type']
 
-        if deviceType == 'Computer':
+        if deviceType in ['Computer', 'Speaker']:
             if volumePercent <= 95:
                 updateVolume = volumePercent+5
                 spotify.volume(volume_percent=updateVolume)
@@ -126,7 +126,7 @@ def volumeDown(spotifySession):
         volumePercent = spotifyState['device']['volume_percent']
         deviceType = spotifyState['device']['type']
 
-        if deviceType == 'Computer':    
+        if deviceType in ['Computer', 'Speaker']:   
             if volumePercent >= 5:
                 updateVolume = volumePercent-5
                 spotify.volume(volume_percent=updateVolume)
