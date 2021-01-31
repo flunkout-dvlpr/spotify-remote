@@ -14,10 +14,10 @@ spotifySession = Spotify.connect()
 geniusSession  = Genius.connect()
 
 play_button 			= Button(2)
-previous_button 		= Button(3)
-next_button 			= Button(4)
-volumeUp_button 		= Button(17)
-volumeDown_button 		= Button(27)
+previous_button 		= Button(4) #Swap 3 with 4
+next_button 			= Button(3) #Swap 4 with 3
+volumeUp_button 		= Button(27) #Swap 17 with 27
+volumeDown_button 		= Button(17) #Swap 27 with 17
 addToPlaylist_button 	= Button(22)
 showLyrics_button		= Button(18)
 
